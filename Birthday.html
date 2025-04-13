@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #ffd6e8, #fff0f5);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      max-width: 600px;
+      margin: 60px auto;
+      background: #ffffffcc;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      color: #e91e63;
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 20px;
+      color: #444;
+      margin-bottom: 30px;
+    }
+
+    #cake {
+      width: 220px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    #cake:hover {
+      transform: scale(1.05);
+    }
+
+    .confetti {
+      position: fixed;
+      top: -10px;
+      width: 12px;
+      height: 12px;
+      z-index: 9999;
+      animation: fall 3s ease-in forwards;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Happy Birthday, Sis!</h1>
+    <p>May your day be as beautiful and sweet as you are.<br>
+    Click the cake to start the celebration!</p>
+    <img id="cake" src="https://i.imgur.com/w1URJEX.png" alt="Birthday Cake">
+  </div>
+
+  <footer>Created with love</footer>
+
+  <script>
+    function createConfettiPiece() {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+
+      // Set random position and color
+      confetti.style.left = Math.random() * window.innerWidth + 'px';
+
+      const colors = ['#ff4081', '#ffeb3b', '#4caf50', '#2196f3', '#ff9800'];
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+      // Random shape
+      confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+      confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+      document.body.appendChild(confetti);
+
+      setTimeout(() => confetti.remove(), 3000);
+    }
+
+    const cake = document.getElementById('cake');
+    cake.addEventListener('click', () => {
+      for (let i = 0; i < 150; i++) {
+        setTimeout(createConfettiPiece, i * 10);
+      }
+    });
+  </script>
+</body>
+</html>
